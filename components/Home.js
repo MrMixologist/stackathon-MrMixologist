@@ -1,19 +1,31 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, Image, Button} from 'react-native';
 import { StackNavigator } from 'react-navigation';
 
-const Home = () => (
+
+const Home = ({ navigation }) => (
   <View style={styles.container}>
-    <Text>Home Screen!</Text>
+    <Text style={styles.text}>Mr. Mixologist here to serve!</Text>
+    <Image
+    source={require('../images/bartender2.png')}
+    />
+    <Button
+    onPress={() => navigation.navigate('Ingredient List')}
+    title="Select Ingredients"
+    />
   </View>
 )
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: 'white',
     alignItems: 'center',
     justifyContent: 'center',
+  },
+  text: {
+    color: 'black',
+    fontSize: 25
   },
 });
 
