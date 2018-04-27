@@ -11,7 +11,7 @@ import cocktailMatches from './cocktailMatches';
 const reducer = combineReducers({ ingredients, cocktails, cocktailMatches });
 const middleware = composeWithDevTools(applyMiddleware(
   thunkMiddleware,
-  createLogger({collapsed: true})
+  // createLogger({collapsed: true})
 ));
 const store = createStore(reducer, middleware);
 

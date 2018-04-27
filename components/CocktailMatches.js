@@ -9,7 +9,7 @@ const CocktailMatches = ({ cocktailMatches }) => {
       (
         <View key={cocktail.id} style={styles.container}>
           <Text style={styles.name}>{cocktail.name}</Text>
-          <Image source={cocktail.imageUrl} width={'20px'} height={'20px'} />
+          {/* <Image source={cocktail.imageUrl} width={'20px'} height={'20px'} /> */}
         </View>
       )
     )

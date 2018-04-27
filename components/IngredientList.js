@@ -33,9 +33,10 @@ export class IngredientList extends React.Component {
   handleSubmit() {
     const cocktailMatches = this.props.cocktails.filter(cocktail => {
       const ingredientArray = cocktail.ingredients.map(ingredient => {
-        console.log("INGREDIENTTTTT", ingredient);
-        return ingredient['Cocktail-Ingredient'].cocktailId
+        return ingredient['Cocktail-Ingredient'].ingredientId
       });
+      console.log("INGREDIENTTTTT ARRAY", ingredientArray);
+      console.log('current selected = ', this.state.selectedIngredients)
       return ingredientArray.every(ingredient => {
         return this.state.selectedIngredients.includes(ingredient);
       });
