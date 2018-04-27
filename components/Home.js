@@ -1,20 +1,48 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, Image, Button, TouchableOpacity} from 'react-native';
 import { StackNavigator } from 'react-navigation';
 
-const Home = () => (
+
+const Home = ({ navigation }) => (
   <View style={styles.container}>
-    <Text>Home Screen!</Text>
+    <Text style={styles.text}>Mr. Mixologist here to serve!</Text>
+    <Image
+    source={require('../images/bartender2.png')}
+    />
+    <TouchableOpacity
+    style={styles.button}
+    onPress={() => navigation.navigate('IngredientList')} >
+    <Text style={styles.buttonText}>Select Ingredients</Text>
+    </TouchableOpacity>
   </View>
 )
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: 'white',
     alignItems: 'center',
     justifyContent: 'center',
   },
+  text: {
+    color: 'black',
+    fontSize: 25,
+    padding: 20
+  },
+  buttonText: {
+    color: 'white',
+    fontSize: 20,
+    fontWeight: 'bold'
+  },
+  button: {
+    backgroundColor: 'black',
+    alignItems: 'center',
+    justifyContent: 'center',
+    margin: 20,
+    height: 50,
+    width: 200,
+    borderRadius: 25,
+  }
 });
 
 export default Home;
