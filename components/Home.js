@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, Image, Button} from 'react-native';
+import { StyleSheet, Text, View, Image, Button, TouchableOpacity} from 'react-native';
 import { StackNavigator } from 'react-navigation';
 
 
@@ -9,10 +9,11 @@ const Home = ({ navigation }) => (
     <Image
     source={require('../images/bartender2.png')}
     />
-    <Button
-    onPress={() => navigation.navigate('Ingredient List')}
-    title="Select Ingredients"
-    />
+    <TouchableOpacity
+    style={styles.button}
+    onPress={() => navigation.navigate('IngredientList')} >
+    <Text style={styles.buttonText}>Select Ingredients</Text>
+    </TouchableOpacity>
   </View>
 )
 
@@ -25,8 +26,23 @@ const styles = StyleSheet.create({
   },
   text: {
     color: 'black',
-    fontSize: 25
+    fontSize: 25,
+    padding: 20
   },
+  buttonText: {
+    color: 'white',
+    fontSize: 20,
+    fontWeight: 'bold'
+  },
+  button: {
+    backgroundColor: 'black',
+    alignItems: 'center',
+    justifyContent: 'center',
+    margin: 20,
+    height: 50,
+    width: 200,
+    borderRadius: 25,
+  }
 });
 
 export default Home;
