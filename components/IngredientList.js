@@ -4,7 +4,7 @@ import { StackNavigator } from 'react-navigation';
 import { connect } from 'react-redux'
 
 // import thunks
-import { fetchIngredients } from '../store';
+import { fetchIngredients, fetchCocktails, setCocktailMatches } from '../store';
 
 // import Ingredient component
 import Ingredient from './Ingredient';
@@ -16,10 +16,12 @@ export class IngredientList extends React.Component {
       selectedIngredients: []
     };
     this.handleClick = this.handleClick.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   componentDidMount() {
     this.props.loadIngredients();
+    this.props.loadCocktails();
   }
 
   handleClick(id) {
@@ -28,9 +30,22 @@ export class IngredientList extends React.Component {
     })
   }
 
+  handleSubmit() {
+    const cocktailMatches = this.props.cocktails.filter(cocktail => {
+      const ingredientArray = cocktail.ingredients.map(ingredient => {
+        console.log("INGREDIENTTTTT", ingredient);
+        return ingredient['Cocktail-Ingredient'].cocktailId
+      });
+      return ingredientArray.every(ingredient => {
+        return this.state.selectedIngredients.includes(ingredient);
+      });
+    });
+    this.props.setCocktails(cocktailMatches);
+    return this.props.navigation.navigate('CocktailMatches')
+  }
+
   render() {
     const { ingredients } = this.props;
-    console.log("state", this.state.selectedIngredients)
     return (
       <View style={styles.container}>
       {
@@ -44,7 +59,7 @@ export class IngredientList extends React.Component {
         })
       }
       <TouchableOpacity style={styles.button}
-      onPress={() => this.handleSubmit} >
+      onPress={this.handleSubmit} >
       <Text style={styles.buttonText}>Search Cocktails</Text>
       </TouchableOpacity>
       </View>
@@ -72,13 +87,22 @@ const styles = StyleSheet.create({
  */
 const mapState = (state) => {
   return {
-    ingredients: state.ingredients
+    ingredients: state.ingredients,
+    cocktails: state.cocktails
   }
 }
 
 const mapDispatch = dispatch => ({
   loadIngredients: () => {
     const action = fetchIngredients();
+    return dispatch(action);
+  },
+  loadCocktails: () => {
+    const action = fetchCocktails();
+    return dispatch(action);
+  },
+  setCocktails: (cocktails) => {
+    const action = setCocktailMatches(cocktails);
     return dispatch(action);
   }
 })
