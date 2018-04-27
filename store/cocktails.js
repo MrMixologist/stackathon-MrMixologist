@@ -25,7 +25,7 @@ const getCocktail = cocktail => ({
 
 export const fetchCocktails = () =>
   dispatch =>
-    axios.get(`localhost:8080/api/cocktails`)
+    axios.get(`http://localhost:8080/api/cocktails`)
       .then(res => res.data)
       .then(cocktails => {
           const action = getCocktails(cocktails);
@@ -35,7 +35,7 @@ export const fetchCocktails = () =>
 
 export const fetchCocktailById = id =>
   dispatch =>
-    axios.get(`localhost:8080/api/cocktails/${id}`)
+    axios.get(`http://localhost:8080/api/cocktails/${id}`)
       .then(res => res.data)
       .then(cocktail => {
           const action = getCocktail(cocktail);

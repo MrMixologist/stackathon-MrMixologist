@@ -3,6 +3,7 @@ import { StyleSheet, Text, View } from 'react-native';
 import { StackNavigator } from 'react-navigation';
 import Home from './components/Home';
 import IngredientList from './components/IngredientList';
+import CocktailMatches from './components/CocktailMatches';
 import { Provider } from 'react-redux';
 import store from './store';
 
@@ -18,6 +19,12 @@ const RootNavigator = StackNavigator({
     screen: IngredientList,
     navigationOptions: {
       header: 'Ingredients'
+    }
+  },
+  CocktailMatches: {
+    screen: CocktailMatches,
+    navigationOptions: {
+      header: 'Cocktail Matches'
     }
   }
 })

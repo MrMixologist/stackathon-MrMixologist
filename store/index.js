@@ -6,14 +6,16 @@ import {composeWithDevTools} from 'redux-devtools-extension';
 // import various store components
 import ingredients from './ingredients';
 import cocktails from './cocktails';
+import cocktailMatches from './cocktailMatches';
 
-const reducer = combineReducers({ ingredients, cocktails });
+const reducer = combineReducers({ ingredients, cocktails, cocktailMatches });
 const middleware = composeWithDevTools(applyMiddleware(
   thunkMiddleware,
-  createLogger({collapsed: true, logging: false})
+  createLogger({collapsed: true})
 ));
 const store = createStore(reducer, middleware);
 
 export default store;
 export * from './ingredients';
 export * from './cocktails';
+export * from './cocktailMatches';
