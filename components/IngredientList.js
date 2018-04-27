@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, Button, TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, View, Button, TouchableOpacity, FlatList, ScrollView } from 'react-native';
 import { StackNavigator } from 'react-navigation';
 import { connect } from 'react-redux'
 
@@ -30,24 +30,25 @@ export class IngredientList extends React.Component {
 
   render() {
     const { ingredients } = this.props;
-    console.log("state", this.state.selectedIngredients)
     return (
-      <View style={styles.container}>
-      {
-        Array.isArray(ingredients) && ingredients.map(ingredient => {
-          return (
-            <TouchableOpacity key={ingredient.id} onPress={() => this.handleClick(ingredient.id)} >
-              <Text>{ ingredient.name }</Text>
-              <Text>{ ingredient.category }</Text>
-            </TouchableOpacity>
-          )
-        })
-      }
-      <TouchableOpacity style={styles.button}
-      onPress={() => this.handleSubmit} >
-      <Text style={styles.buttonText}>Search Cocktails</Text>
-      </TouchableOpacity>
-      </View>
+      <ScrollView contentContainerStyle={styles.contentContainer}>
+        <View style={styles.container}>
+        {
+          Array.isArray(ingredients) && ingredients.map(ingredient => {
+            return (
+              <TouchableOpacity key={ingredient.id} onPress={() => this.handleClick(ingredient.id)} >
+                <Text>{ ingredient.name }</Text>
+                <Text>{ ingredient.category }</Text>
+              </TouchableOpacity>
+            )
+          })
+        }
+        <TouchableOpacity style={styles.button}
+        onPress={() => this.handleSubmit} >
+        <Text style={styles.buttonText}>Search Cocktails</Text>
+        </TouchableOpacity>
+        </View>
+      </ScrollView>
     )
   }
 }
@@ -64,7 +65,15 @@ const styles = StyleSheet.create({
     height: 50,
     width: 200,
     borderRadius: 25,
-  }
+  },
+  contentContainer: {
+    paddingVertical: 20
+  },
+  buttonText: {
+    color: 'white',
+    fontSize: 20,
+    fontWeight: 'bold'
+  },
 })
 
 /**
