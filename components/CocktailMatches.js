@@ -19,7 +19,7 @@ const CocktailMatches = ({ cocktailMatches, navigation }) => {
           rightComponent={{ icon: 'home', color: 'teal' }}
       />
       <ScrollView stickyHeaderIndices={[0]}>
-        <View>
+        <View style={styles.textContainer}>
           <Text style={styles.text}> Cocktail List </Text>
         </View>
           {Array.isArray(cocktailMatches) && cocktailMatches.map(cocktail =>
@@ -60,11 +60,13 @@ const styles = StyleSheet.create({
   text: {
     fontSize: 25,
     textAlign: 'center',
-    backgroundColor: 'rgba(0, 0, 0, 0.8)',
     padding: 10,
     width: '100%',
     color: 'white',
     height: 50
+  },
+  textContainer: {
+    backgroundColor: 'rgba(0, 0, 0, 0.8)'
   }
 })
 
