@@ -1,51 +1,73 @@
 import React from 'react';
-import { StyleSheet, Text, View, Image } from 'react-native';
+import { StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native';
 import { StackNavigator } from 'react-navigation';
 import { connect } from 'react-redux';
 import { fetchCocktailById, fetchIngredients } from '../store';
+import {Header, Icon} from 'react-native-elements';
 
-const SingleCocktail = ({ cocktail }) => (
-  <View style={styles.container}>
-  <Text style={styles.name}>{cocktail.name}</Text>
-  <Image source={cocktail.imageUrl} width={'20px'} height={'20px'} />
-  </View>
+const SingleCocktail = ({ navigation }) => {
+  const singleCocktail = navigation.state.params.singleCocktail;
+  return (
+    <View style={styles.bigContainer}>
+    <Header
+    backgroundColor="white"
+    leftComponent={
+      <TouchableOpacity style={styles.backButton} onPress={() => navigation.goBack()}>
+      <Icon name='arrow-back' color='teal' />
+      </TouchableOpacity>}
+      centerComponent={{ text: 'Mr. Mixologist', style: { color: 'teal', fontSize: 17} }}
+      rightComponent={{ icon: 'home', color: 'teal' }}
+      />
+    <View style={styles.container}>
+      <View>
+        <Text style={styles.name}>{singleCocktail.name}</Text>
+      </View>
+      <View style={styles.recipeContainer}>
+      <Image source={{uri: singleCocktail.imageUrl}} style={styles.image} />
+      <View style={styles.ingredients}>
+        {singleCocktail.ingredients.map(ingredient =>
+          <Text key={ingredient.id}>{`${ingredient['Cocktail-Ingredient'].measurement} ${ingredient.name}`}</Text>
+        )}
+      </View>
+      <Text style={styles.recipe}> {singleCocktail.recipe} </Text>
+      </View>
+    </View>
+    </View>
+  )
+}
 
-)
 
-
-// componentDidMount() {
-//   this.props.loadIngredients();
-//   this.props.loadCocktail();
-// }
-
-//Container
-// export const mapStateToProps = (storeState, ownProps) => ({
-//   cocktail: storeState.cocktails.find(cocktail => cocktail.id === +ownProps.match.params.id),
-//   ingredients: storeState.ingredients,
-// });
-
-// export const mapDispatchToProps = (dispatch, ownProps) => ({
-//   loadCocktail: () => {
-//     const action = fetchCocktailById(+ownProps.match.params.id);
-//     return dispatch(action);
-//   },
-//   loadIngredients: () => {
-//     const action = fetchIngredients();
-//     return dispatch(action);
-//   }
-// });
-
-// export const SingleCocktailContainer = connect(mapStateToProps, mapDispatchToProps)(SingleCocktail);
-
-//Styles
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center'
+    padding: 20,
+    alignItems: 'center'
+  },
+  bigContainer: {
+    flex: 1
+  },
+  recipeContainer: {
+    borderColor: 'teal',
+    borderWidth: 2
   },
   name: {
-    fontSize: 35,
-    fontWeight: 'bold'
+    fontSize: 45,
+    fontFamily: 'SavoyeLetPlain',
+    color: 'teal'
+  },
+  image: {
+    width: 250,
+    height: 250,
+    margin: 30
+  },
+  ingredients: {
+    padding: 10,
+    margin: 20
+  },
+  recipe: {
+    margin: 20,
+    fontSize: 15
   }
 })
+
+export default SingleCocktail;
