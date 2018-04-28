@@ -18,13 +18,13 @@ const CocktailMatches = ({ cocktailMatches, navigation }) => {
           rightComponent={{ icon: 'home', color: 'teal' }}
       />
       <ScrollView stickyHeaderIndices={[0]}>
-        <View style={styles.textContainer}>
+      <View style={styles.textContainer}>
           <Text style={styles.text}> Cocktail List </Text>
         </View>
           {Array.isArray(cocktailMatches) && cocktailMatches.map(cocktail =>
             (
               <View key={cocktail.id} style={styles.container}>
-                <Text style={styles.name}>{cocktail.name}</Text>
+                <Text style={styles.name} onPress={() => navigation.navigate('SingleCocktail', {singleCocktail: cocktail})}>{cocktail.name}</Text>
                 <Image source={{uri: cocktail.imageUrl}} style={{width: 200, height: 150}} />
               </View>
             )
