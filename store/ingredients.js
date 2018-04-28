@@ -17,7 +17,7 @@ const getIngredients = ingredients => ({type: GET_INGREDIENTS, ingredients});
 
 export const fetchIngredients = () =>
   dispatch =>
-    axios.get(`http://172.16.21.59:8080/api/ingredients`)
+    axios.get(`http://192.168.1.6:8080/api/ingredients`)
       .then(res => res.data)
       .then(ingredients => {
           const action = getIngredients(ingredients);

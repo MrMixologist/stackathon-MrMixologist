@@ -1,5 +1,6 @@
 import React from 'react';
 import { StyleSheet, Text, View, Button, TouchableOpacity, FlatList, ScrollView } from 'react-native';
+import { Icon, Header } from 'react-native-elements';
 import { StackNavigator } from 'react-navigation';
 import { connect } from 'react-redux'
 
@@ -35,8 +36,6 @@ export class IngredientList extends React.Component {
       const ingredientArray = cocktail.ingredients.map(ingredient => {
         return ingredient['Cocktail-Ingredient'].ingredientId
       });
-      console.log("INGREDIENTTTTT ARRAY", ingredientArray);
-      console.log('current selected = ', this.state.selectedIngredients)
       return ingredientArray.every(ingredient => {
         return this.state.selectedIngredients.includes(ingredient);
       });
@@ -46,51 +45,122 @@ export class IngredientList extends React.Component {
   }
 
   render() {
-    const { ingredients } = this.props;
+    const { ingredients, navigation } = this.props;
+    const categories = ['Liquor', 'Mixer', 'Fruit/Vegetable', 'Sweetener', 'Bitters']
     return (
-      <ScrollView contentContainerStyle={styles.contentContainer}>
-        <View style={styles.container}>
-        {
-          Array.isArray(ingredients) && ingredients.map(ingredient => {
-            return (
-              <TouchableOpacity key={ingredient.id} onPress={() => this.handleClick(ingredient.id)} >
-                <Text>{ ingredient.name }</Text>
-                <Text>{ ingredient.category }</Text>
-              </TouchableOpacity>
-            )
-          })
-        }
-        <TouchableOpacity style={styles.button}
-        onPress={this.handleSubmit} >
-        <Text style={styles.buttonText}>Search Cocktails</Text>
-        </TouchableOpacity>
+      <View>
+      <Header
+        backgroundColor="white"
+        leftComponent={
+        <TouchableOpacity style={styles.backButton} onPress={() => navigation.goBack()}>
+          <Icon name='arrow-back' color='teal' />
+        </TouchableOpacity>}
+        centerComponent={{ text: 'Mr. Mixologist', style: { color: 'teal' } }}
+        rightComponent={{ icon: 'home', color: 'teal' }}
+      />
+      <ScrollView stickyHeaderIndices={[0]}>
+        <View style={styles.headerContainer}>
+          <Text style={styles.header}> Please select your ingredients</Text>
         </View>
+        <View>
+          {
+            categories.map(category => {
+              return (
+                <View style={styles.categoryContainer} key={category}>
+                  <Text style={styles.category}> {category} </Text>
+                  <View style={styles.ingredientContainer}>
+                    {
+                      Array.isArray(ingredients) && ingredients.filter(ingredient => ingredient.category === category).map(ingredient => {
+                        return (
+                          <TouchableOpacity key={ingredient.id} onPress={() => this.handleClick(ingredient.id)} >
+                            <Text style={styles.ingredient}>{ ingredient.name }</Text>
+                          </TouchableOpacity>
+                        )
+                      })
+                    }
+                  </View>
+                </View>
+              )
+            })
+          }
+          </View>
+          <TouchableOpacity style={styles.button}
+          onPress={this.handleSubmit} >
+            <Text style={styles.buttonText}>Search Cocktails</Text>
+          </TouchableOpacity>
       </ScrollView>
+    </View>
     )
   }
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1
+  // container: {
+  //   flex: 1,
+  //   backgroundColor: 'teal',
+  //   paddingTop: 75,
+  //   alignItems: 'center',
+  //   justifyContent: 'center',
+  // },
+  backButton: {
+    paddingHorizontal: 20,
+    paddingVertical: 5
   },
   button: {
     backgroundColor: 'black',
     alignItems: 'center',
     justifyContent: 'center',
     margin: 20,
+    marginBottom: 125,
     height: 50,
     width: 200,
     borderRadius: 25,
-  },
-  contentContainer: {
-    paddingVertical: 20
+    top: 30,
   },
   buttonText: {
     color: 'white',
-    fontSize: 20,
-    fontWeight: 'bold'
+    fontWeight: 'bold',
+    fontSize: 20
   },
+  category: {
+    fontWeight: 'bold',
+    fontSize: 20,
+    color: 'teal',
+    alignSelf: 'center',
+    textDecorationLine: 'underline',
+    borderColor: 'teal',
+  },
+  categoryContainer: {
+    paddingTop: 20,
+    borderWidth: 10,
+    borderColor: 'teal',
+    borderLeftWidth: 20,
+    borderRightWidth: 20,
+    top: 40
+  },
+  headerContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    backgroundColor: 'black',
+    top: 0,
+    left: 0,
+    right: 0,
+    position: 'absolute',
+    // zIndex: 2,
+  },
+  header: {
+    flex: 1,
+    color: 'white',
+    padding: 10,
+    height: 50,
+    fontSize: 25,
+    textAlign: 'center',
+  },
+  ingredient: {
+    fontSize: 15,
+    padding: 10,
+    textShadowColor: 'black'
+  }
 })
 
 /**

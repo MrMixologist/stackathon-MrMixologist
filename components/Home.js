@@ -20,22 +20,22 @@ const Home = ({ navigation }) => (
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: 'white',
+    backgroundColor: 'black',
     alignItems: 'center',
     justifyContent: 'center',
   },
   text: {
-    color: 'black',
+    color: 'white',
     fontSize: 25,
     padding: 20
   },
   buttonText: {
-    color: 'white',
+    color: 'black',
     fontSize: 20,
     fontWeight: 'bold'
   },
   button: {
-    backgroundColor: 'black',
+    backgroundColor: 'white',
     alignItems: 'center',
     justifyContent: 'center',
     margin: 20,
