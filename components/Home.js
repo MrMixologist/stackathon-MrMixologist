@@ -11,9 +11,8 @@ const Home = ({ navigation }) => (
   >
     <Header
       fontFamily="SavoyeLetPlain"
-      fontSize={25}
       backgroundColor="white"
-      centerComponent={{ text: 'Mr. Mixologist', style: { color: 'teal' } }}
+      centerComponent={{ text: 'Mr. Mixologist', style: { color: 'teal', fontSize: 17} }}
     />
       <Text style={styles.text}>Mr. Mixologist here to serve!</Text>
       <TouchableOpacity
