@@ -95,13 +95,6 @@ export class IngredientList extends React.Component {
 }
 
 const styles = StyleSheet.create({
-  // container: {
-  //   flex: 1,
-  //   backgroundColor: 'teal',
-  //   paddingTop: 75,
-  //   alignItems: 'center',
-  //   justifyContent: 'center',
-  // },
   backButton: {
     paddingHorizontal: 20,
     paddingVertical: 5
@@ -124,11 +117,12 @@ const styles = StyleSheet.create({
   },
   category: {
     fontWeight: 'bold',
-    fontSize: 20,
+    fontSize: 40,
     color: 'teal',
     alignSelf: 'center',
     textDecorationLine: 'underline',
     borderColor: 'teal',
+    fontFamily: 'SavoyeLetPlain',
   },
   categoryContainer: {
     paddingTop: 20,
@@ -136,17 +130,16 @@ const styles = StyleSheet.create({
     borderColor: 'teal',
     borderLeftWidth: 20,
     borderRightWidth: 20,
-    top: 40
+    top: 50
   },
   headerContainer: {
     flex: 1,
     justifyContent: 'center',
-    backgroundColor: 'black',
+    backgroundColor: 'rgba(0, 0, 0, 0.8)',
     top: 0,
     left: 0,
     right: 0,
     position: 'absolute',
-    // zIndex: 2,
   },
   header: {
     flex: 1,
