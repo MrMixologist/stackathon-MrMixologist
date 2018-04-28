@@ -10,12 +10,11 @@ const CocktailMatches = ({ cocktailMatches, navigation }) => {
       <Header
           backgroundColor="white"
           fontFamily="SavoyeLetPlain"
-          fontSize={20}
           leftComponent={
           <TouchableOpacity style={styles.backButton} onPress={() => navigation.goBack()}>
             <Icon name='arrow-back' color='teal' />
           </TouchableOpacity>}
-          centerComponent={{ text: 'Mr. Mixologist', style: { color: 'teal' } }}
+          centerComponent={{ text: 'Mr. Mixologist', style: { color: 'teal', fontSize: 17 } }}
           rightComponent={{ icon: 'home', color: 'teal' }}
       />
       <ScrollView stickyHeaderIndices={[0]}>
