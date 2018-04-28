@@ -26,9 +26,15 @@ export class IngredientList extends React.Component {
   }
 
   handleClick(id) {
-    this.setState({
-      selectedIngredients: [...this.state.selectedIngredients, id]
-    })
+    if (this.state.selectedIngredients.indexOf(id) === -1) {
+      this.setState({
+        selectedIngredients: [...this.state.selectedIngredients, id]
+      })
+    } else {
+      this.setState({
+        selectedIngredients: this.state.selectedIngredients.filter(elem => elem !== id)
+      })
+    }
   }
 
   handleSubmit() {
@@ -47,16 +53,18 @@ export class IngredientList extends React.Component {
   render() {
     const { ingredients, navigation } = this.props;
     const categories = ['Liquor', 'Mixer', 'Fruit/Vegetable', 'Sweetener', 'Bitters']
+    console.log('STATE ====> ', this.state.selectedIngredients)
     return (
       <View>
       <Header
-        backgroundColor="white"
-        leftComponent={
-        <TouchableOpacity style={styles.backButton} onPress={() => navigation.goBack()}>
-          <Icon name='arrow-back' color='teal' />
-        </TouchableOpacity>}
-        centerComponent={{ text: 'Mr. Mixologist', style: { color: 'teal', fontSize: 17} }}
-        rightComponent={{ icon: 'home', color: 'teal' }}
+      backgroundColor="white"
+      fontFamily="SavoyeLetPlain"
+      leftComponent={
+      <TouchableOpacity onPress={() => navigation.goBack()}>
+        <Icon name='arrow-back' color='teal' />
+      </TouchableOpacity>}
+      centerComponent={{ text: 'Mr. Mixologist', style: { color: 'teal', fontSize: 17 } }}
+      rightComponent={{ icon: 'home', color: 'teal' }}
       />
       <ScrollView stickyHeaderIndices={[0]}>
         <View style={styles.headerContainer}>
@@ -72,7 +80,11 @@ export class IngredientList extends React.Component {
                     {
                       Array.isArray(ingredients) && ingredients.filter(ingredient => ingredient.category === category).map(ingredient => {
                         return (
-                          <TouchableOpacity key={ingredient.id} onPress={() => this.handleClick(ingredient.id)} >
+                          <TouchableOpacity
+                            style={this.state.selectedIngredients.indexOf(ingredient.id) === -1
+                            ? styles.inactiveIngredient
+                            : styles.activeIngredient }
+                            key={ingredient.id} onPress={() => this.handleClick(ingredient.id)} >
                             <Text style={styles.ingredient}>{ ingredient.name }</Text>
                           </TouchableOpacity>
                         )
@@ -149,6 +161,12 @@ const styles = StyleSheet.create({
     fontSize: 15,
     padding: 10,
     textShadowColor: 'black'
+  },
+  activeIngredient: {
+    backgroundColor: 'wheat'
+  },
+  inactiveIngredient: {
+    backgroundColor: 'white'
   }
 })
 
