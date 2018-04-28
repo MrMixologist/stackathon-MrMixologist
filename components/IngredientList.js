@@ -55,7 +55,7 @@ export class IngredientList extends React.Component {
         <TouchableOpacity style={styles.backButton} onPress={() => navigation.goBack()}>
           <Icon name='arrow-back' color='teal' />
         </TouchableOpacity>}
-        centerComponent={{ text: 'Mr. Mixologist', style: { color: 'teal' } }}
+        centerComponent={{ text: 'Mr. Mixologist', style: { color: 'teal', fontSize: 17} }}
         rightComponent={{ icon: 'home', color: 'teal' }}
       />
       <ScrollView stickyHeaderIndices={[0]}>
@@ -95,10 +95,6 @@ export class IngredientList extends React.Component {
 }
 
 const styles = StyleSheet.create({
-  backButton: {
-    paddingHorizontal: 20,
-    paddingVertical: 5
-  },
   button: {
     backgroundColor: 'black',
     alignItems: 'center',
