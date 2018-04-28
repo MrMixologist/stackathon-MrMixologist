@@ -3,7 +3,6 @@ import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 import { StackNavigator } from 'react-navigation';
 
 const Ingredient = ({ ingredient }) => {
-  console.log("ingredient", ingredient);
   return (
     <View style={styles.container}>
         <Text>{ ingredient.name }</Text>

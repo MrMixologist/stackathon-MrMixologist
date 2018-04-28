@@ -1,5 +1,6 @@
 import React from 'react';
-import { StyleSheet, Text, View, Header } from 'react-native';
+import { StyleSheet, Text, View } from 'react-native';
+import { Header } from 'react-native-elements';
 import { StackNavigator } from 'react-navigation';
 import Home from './components/Home';
 import IngredientList from './components/IngredientList';
