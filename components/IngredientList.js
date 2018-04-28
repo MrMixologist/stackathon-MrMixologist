@@ -109,9 +109,10 @@ export class IngredientList extends React.Component {
 const styles = StyleSheet.create({
   button: {
     backgroundColor: 'black',
+    alignSelf: 'center',
     alignItems: 'center',
     justifyContent: 'center',
-    margin: 20,
+    marginTop: 30,
     marginBottom: 125,
     height: 50,
     width: 200,
