@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, Button, TouchableOpacity, FlatList, ScrollView } from 'react-native';
+import { StyleSheet, Text, View, Button, TouchableOpacity, FlatList, ScrollView, Header } from 'react-native';
 import { StackNavigator } from 'react-navigation';
 import { connect } from 'react-redux'
 
@@ -35,8 +35,6 @@ export class IngredientList extends React.Component {
       const ingredientArray = cocktail.ingredients.map(ingredient => {
         return ingredient['Cocktail-Ingredient'].ingredientId
       });
-      console.log("INGREDIENTTTTT ARRAY", ingredientArray);
-      console.log('current selected = ', this.state.selectedIngredients)
       return ingredientArray.every(ingredient => {
         return this.state.selectedIngredients.includes(ingredient);
       });
@@ -47,32 +45,49 @@ export class IngredientList extends React.Component {
 
   render() {
     const { ingredients } = this.props;
+    const categories = ['Liquor', 'Mixer', 'Fruit/Vegetable', 'Sweetener', 'Bitters']
     return (
       <ScrollView contentContainerStyle={styles.contentContainer}>
-        <View style={styles.container}>
-        {
-          Array.isArray(ingredients) && ingredients.map(ingredient => {
-            return (
-              <TouchableOpacity key={ingredient.id} onPress={() => this.handleClick(ingredient.id)} >
-                <Text>{ ingredient.name }</Text>
-                <Text>{ ingredient.category }</Text>
-              </TouchableOpacity>
-            )
-          })
-        }
-        <TouchableOpacity style={styles.button}
-        onPress={this.handleSubmit} >
-        <Text style={styles.buttonText}>Search Cocktails</Text>
-        </TouchableOpacity>
+      <View >
+        <View style={styles.headerContainer}>
+          <Text style={styles.header}> Please select your ingredients</Text>
         </View>
-      </ScrollView>
+      {
+        categories.map(category => {
+          return (
+            <View style={styles.categoryContainer} key={category}>
+              <Text style={styles.category}> {category} </Text>
+              <View style={styles.ingredientContainer}>
+                {
+                  Array.isArray(ingredients) && ingredients.filter(ingredient => ingredient.category === category).map(ingredient => {
+                return (
+                  <TouchableOpacity key={ingredient.id} onPress={() => this.handleClick(ingredient.id)} >
+                    <Text style={styles.ingredient}>{ ingredient.name }</Text>
+                  </TouchableOpacity>
+                )
+              })
+            }
+            </View>
+          </View>
+        )
+        })
+      }
+      <TouchableOpacity style={styles.button}
+      onPress={this.handleSubmit} >
+        <Text style={styles.buttonText}>Search Cocktails</Text>
+      </TouchableOpacity>
+      </View>
+    </ScrollView>
     )
   }
 }
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1
+    flex: 1,
+    paddingTop: 75,
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   button: {
     backgroundColor: 'black',
@@ -83,14 +98,48 @@ const styles = StyleSheet.create({
     width: 200,
     borderRadius: 25,
   },
-  contentContainer: {
-    paddingVertical: 20
-  },
   buttonText: {
     color: 'white',
-    fontSize: 20,
-    fontWeight: 'bold'
+    fontWeight: 'bold',
+    fontSize: 20
   },
+  category: {
+    fontWeight: 'bold',
+    fontSize: 20,
+    color: 'teal',
+    alignSelf: 'center',
+    textDecorationLine: 'underline',
+    borderColor: 'teal',
+  },
+  categoryContainer: {
+    paddingTop: 20,
+    borderWidth: 10,
+    borderColor: 'teal',
+    borderLeftWidth: 20,
+    borderRightWidth: 20
+  },
+  headerContainer: {
+    justifyContent: 'center'
+  },
+  header: {
+    alignContent: 'center',
+    flex: 1,
+    color: 'black',
+    height: 50,
+    fontSize: 25,
+    textAlign: 'center',
+    textAlignVertical: 'center',
+  },
+  ingredient: {
+    fontSize: 15,
+    padding: 15,
+    includeFontPadding: true,
+    textShadowColor: 'black'
+  },
+  ingredientContainer: {
+    // borderColor: 'teal',
+    // borderWidth: 3
+  }
 })
 
 /**
