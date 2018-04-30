@@ -16,7 +16,10 @@ const SingleCocktail = ({ navigation }) => {
       <Icon name='arrow-back' color='teal' />
       </TouchableOpacity>}
       centerComponent={{ text: 'Mr. Mixologist', style: { color: 'teal', fontSize: 17} }}
-      rightComponent={{ icon: 'home', color: 'teal' }}
+      rightComponent={
+        <TouchableOpacity onPress={() => navigation.navigate('Main')}>
+          <Icon name='home' color='teal' />
+        </TouchableOpacity>}
       />
     <View style={styles.container}>
       <View>
