@@ -15,19 +15,19 @@ const CocktailMatches = ({ cocktailMatches, navigation }) => {
       fontFamily="SavoyeLetPlain"
       leftComponent={
       <TouchableOpacity onPress={() => navigation.goBack()}>
-        <Icon name='arrow-back' color='teal' />
+        <Icon name="arrow-back" color="teal" />
       </TouchableOpacity>}
       centerComponent={{ text: 'Mr. Mixologist', style: { color: 'teal', fontSize: 17 } }}
       rightComponent={
         <TouchableOpacity onPress={() => navigation.navigate('Main')}>
-          <Icon name='home' color='teal' />
+          <Icon name="home" color="teal" />
         </TouchableOpacity>}
       />
       <ScrollView stickyHeaderIndices={[0]}>
       <View style={styles.textContainer}>
           <Text style={styles.text}> Cocktail List </Text>
         </View>
-          {Array.isArray(cocktailMatches) && cocktailMatches.length ? 
+          {Array.isArray(cocktailMatches) && cocktailMatches.length ?
             cocktailMatches.map(cocktail =>
             (
               <View key={cocktail.id} style={styles.container}>
@@ -66,7 +66,7 @@ const styles = StyleSheet.create({
     padding: 20,
     alignItems: 'center',
     borderColor: 'teal',
-    borderWidth: 2, 
+    borderWidth: 2,
     margin: 20,
     marginTop: 75
   },

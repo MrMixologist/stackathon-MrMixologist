@@ -7,9 +7,6 @@ import { connect } from 'react-redux'
 // import thunks
 import { fetchIngredients, fetchCocktails, setCocktailMatches } from '../store';
 
-// import Ingredient component
-import Ingredient from './Ingredient';
-
 export class IngredientList extends React.Component {
   constructor(props) {
     super(props);
@@ -60,12 +57,12 @@ export class IngredientList extends React.Component {
       fontFamily="SavoyeLetPlain"
       leftComponent={
       <TouchableOpacity onPress={() => navigation.goBack()}>
-        <Icon name='arrow-back' color='teal' />
+        <Icon name="arrow-back" color="teal" />
       </TouchableOpacity>}
       centerComponent={{ text: 'Mr. Mixologist', style: { color: 'teal', fontSize: 17 } }}
       rightComponent={
         <TouchableOpacity onPress={() => navigation.navigate('Main')}>
-          <Icon name='home' color='teal' />
+          <Icon name="home" color="teal" />
         </TouchableOpacity>}
       />
       <ScrollView stickyHeaderIndices={[0]}>

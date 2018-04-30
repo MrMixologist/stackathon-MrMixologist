@@ -1,9 +1,7 @@
 import React from 'react';
 import { StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native';
 import { StackNavigator } from 'react-navigation';
-import { connect } from 'react-redux';
-import { fetchCocktailById, fetchIngredients } from '../store';
-import {Header, Icon} from 'react-native-elements';
+import { Header, Icon } from 'react-native-elements';
 
 const SingleCocktail = ({ navigation }) => {
   const singleCocktail = navigation.state.params.singleCocktail;
@@ -13,12 +11,12 @@ const SingleCocktail = ({ navigation }) => {
     backgroundColor="white"
     leftComponent={
       <TouchableOpacity style={styles.backButton} onPress={() => navigation.goBack()}>
-      <Icon name='arrow-back' color='teal' />
+      <Icon name="arrow-back" color="teal" />
       </TouchableOpacity>}
       centerComponent={{ text: 'Mr. Mixologist', style: { color: 'teal', fontSize: 17} }}
       rightComponent={
         <TouchableOpacity onPress={() => navigation.navigate('Main')}>
-          <Icon name='home' color='teal' />
+          <Icon name="home" color="teal" />
         </TouchableOpacity>}
       />
     <View style={styles.container}>
