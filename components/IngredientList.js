@@ -55,7 +55,7 @@ export class IngredientList extends React.Component {
     const categories = ['Liquors', 'Mixers', 'Fruits/Vegetables', 'Sweeteners', 'Bitters', 'Herbs']
     return (
       <View>
-      <HeaderComponent navigationTest={navigation}/>
+      <HeaderComponent headerNavigation={navigation} />
       <ScrollView stickyHeaderIndices={[0]}>
         <View style={styles.headerContainer}>
           <Text style={styles.header}> Please select your ingredients</Text>
@@ -135,7 +135,6 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     backgroundColor: 'rgba(0, 0, 0, 0.8)',
-    top: 0,
     left: 0,
     right: 0,
     position: 'absolute',

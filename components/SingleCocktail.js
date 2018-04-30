@@ -3,22 +3,14 @@ import { StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native';
 import { StackNavigator } from 'react-navigation';
 import { Header, Icon } from 'react-native-elements';
 
+// import header
+import HeaderComponent from './Header'
+
 const SingleCocktail = ({ navigation }) => {
   const singleCocktail = navigation.state.params.singleCocktail;
   return (
     <View style={styles.bigContainer}>
-    <Header
-    backgroundColor="white"
-    leftComponent={
-      <TouchableOpacity style={styles.backButton} onPress={() => navigation.goBack()}>
-      <Icon name="arrow-back" color="teal" />
-      </TouchableOpacity>}
-      centerComponent={{ text: 'Mr. Mixologist', style: { color: 'teal', fontSize: 17} }}
-      rightComponent={
-        <TouchableOpacity onPress={() => navigation.navigate('Main')}>
-          <Icon name="home" color="teal" />
-        </TouchableOpacity>}
-      />
+    <HeaderComponent headerNavigation={navigation} />
     <View style={styles.container}>
       <View>
         <Text style={styles.name}>{singleCocktail.name}</Text>
@@ -42,7 +34,9 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 20,
-    alignItems: 'center'
+    alignItems: 'center',
+    borderTopColor: 'teal',
+    borderTopWidth: 2
   },
   bigContainer: {
     flex: 1
