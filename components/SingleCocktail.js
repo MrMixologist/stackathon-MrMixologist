@@ -1,7 +1,6 @@
 import React from 'react';
-import { StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, View, Image, ScrollView } from 'react-native';
 import { StackNavigator } from 'react-navigation';
-import { Header, Icon } from 'react-native-elements';
 
 // import header
 import HeaderComponent from './Header'
@@ -10,21 +9,23 @@ const SingleCocktail = ({ navigation }) => {
   const singleCocktail = navigation.state.params.singleCocktail;
   return (
     <View style={styles.bigContainer}>
-    <HeaderComponent headerNavigation={navigation} />
-    <View style={styles.container}>
-      <View>
-        <Text style={styles.name}>{singleCocktail.name}</Text>
-      </View>
-      <View style={styles.recipeContainer}>
-      <Image source={{uri: singleCocktail.imageUrl}} style={styles.image} />
-      <View style={styles.ingredients}>
-        {singleCocktail.ingredients.map(ingredient =>
-          <Text key={ingredient.id}>{`${ingredient['Cocktail-Ingredient'].measurement} ${ingredient.name}`}</Text>
-        )}
-      </View>
-      <Text style={styles.recipe}> {singleCocktail.recipe} </Text>
-      </View>
-    </View>
+      <HeaderComponent headerNavigation={navigation} />
+      <ScrollView>
+        <View style={styles.container}>
+          <View>
+            <Text style={styles.name}>{singleCocktail.name}</Text>
+          </View>
+          <View style={styles.recipeContainer}>
+          <Image source={{uri: singleCocktail.imageUrl}} style={styles.image} />
+          <View style={styles.ingredients}>
+            {singleCocktail.ingredients.map(ingredient =>
+              <Text key={ingredient.id}>{`${ingredient['Cocktail-Ingredient'].measurement} ${ingredient.name}`}</Text>
+            )}
+          </View>
+          <Text style={styles.recipe}> {singleCocktail.recipe} </Text>
+          </View>
+        </View>
+      </ScrollView>
     </View>
   )
 }
