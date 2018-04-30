@@ -4,19 +4,19 @@ import { StackNavigator } from 'react-navigation';
 import { connect } from 'react-redux';
 import { Header, Icon } from 'react-native-elements';
 
-const HeaderComponent = ({ navigationTest }) => {
+const HeaderComponent = ({ headerNavigation }) => {
   return (
     <Header
       backgroundColor="white"
       fontFamily="SavoyeLetPlain"
       leftComponent={
-      <TouchableOpacity onPress={() => navigationTest.goBack()}>
-        <Icon name="arrow-back" color="teal" />
+      <TouchableOpacity onPress={() => headerNavigation.goBack()}>
+        <Icon name="chevron-left" color="teal" />
       </TouchableOpacity>}
       centerComponent={{ text: 'Mr. Mixologist', style: { color: 'teal', fontSize: 17 } }}
       rightComponent={
-        <TouchableOpacity onPress={() => navigationTest.navigate('Main')}>
-          <Icon name="home" color="teal" />
+        <TouchableOpacity onPress={() => headerNavigation.navigate('Main')}>
+          <Icon name="local-bar" color="teal" />
         </TouchableOpacity>}
       />
   )
