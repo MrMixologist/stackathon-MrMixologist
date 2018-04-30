@@ -25,7 +25,7 @@ const getCocktail = cocktail => ({
 
 export const fetchCocktails = () =>
   dispatch =>
-    axios.get(`http://192.168.1.8:8080/api/cocktails`)
+    axios.get(`http://172.16.21.59:8080/api/cocktails`)
       .then(res => res.data)
       .then(cocktails => {
           const action = getCocktails(cocktails);

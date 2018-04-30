@@ -23,8 +23,9 @@ const CocktailMatches = ({ cocktailMatches, navigation }) => {
           <Icon name="home" color="teal" />
         </TouchableOpacity>}
       />
+      <View style={styles.bottomMargin}>
       <ScrollView stickyHeaderIndices={[0]}>
-      <View style={styles.textContainer}>
+        <View style={styles.textContainer}>
           <Text style={styles.text}> Cocktail List </Text>
         </View>
           {Array.isArray(cocktailMatches) && cocktailMatches.length ?
@@ -42,6 +43,7 @@ const CocktailMatches = ({ cocktailMatches, navigation }) => {
             </View>
           }
       </ScrollView>
+      </View>
     </View>
   )
 }
@@ -99,6 +101,9 @@ const styles = StyleSheet.create({
     width: 250,
     height: 200,
     alignSelf: 'center'
+  },
+  bottomMargin: {
+    marginBottom: 140
   }
 })
 
