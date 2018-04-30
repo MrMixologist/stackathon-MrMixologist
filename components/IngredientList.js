@@ -52,7 +52,7 @@ export class IngredientList extends React.Component {
 
   render() {
     const { ingredients, navigation } = this.props;
-    const categories = ['Liquor', 'Mixer', 'Fruit/Vegetable', 'Sweetener', 'Bitters']
+    const categories = ['Liquors', 'Mixers', 'Fruits/Vegetables', 'Sweeteners', 'Bitters', 'Herbs']
     return (
       <View>
       <HeaderComponent navigationTest={navigation}/>
