@@ -1,5 +1,3 @@
-import axios from 'axios';
-
 const SET_COCKTAILS = 'SET_COCKTAILS';
 
 const setCocktails = cocktails => ({
