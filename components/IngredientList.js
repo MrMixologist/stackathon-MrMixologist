@@ -53,7 +53,6 @@ export class IngredientList extends React.Component {
   render() {
     const { ingredients, navigation } = this.props;
     const categories = ['Liquor', 'Mixer', 'Fruit/Vegetable', 'Sweetener', 'Bitters']
-    console.log('STATE ====> ', this.state.selectedIngredients)
     return (
       <View>
       <Header
@@ -64,7 +63,10 @@ export class IngredientList extends React.Component {
         <Icon name='arrow-back' color='teal' />
       </TouchableOpacity>}
       centerComponent={{ text: 'Mr. Mixologist', style: { color: 'teal', fontSize: 17 } }}
-      rightComponent={{ icon: 'home', color: 'teal' }}
+      rightComponent={
+        <TouchableOpacity onPress={() => navigation.navigate('Main')}>
+          <Icon name='home' color='teal' />
+        </TouchableOpacity>}
       />
       <ScrollView stickyHeaderIndices={[0]}>
         <View style={styles.headerContainer}>
