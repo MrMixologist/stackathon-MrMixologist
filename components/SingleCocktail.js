@@ -58,11 +58,11 @@ const styles = StyleSheet.create({
   },
   image: {
     width: 250,
-    height: 250,
-    margin: 30
+    height: 300,
+    margin: 30,
+    alignSelf: 'center'
   },
   ingredients: {
-    padding: 10,
     margin: 20
   },
   recipe: {

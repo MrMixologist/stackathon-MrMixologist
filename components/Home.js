@@ -6,14 +6,14 @@ import { StackNavigator } from 'react-navigation';
 
 const Home = ({ navigation }) => (
   <View style={styles.container}>
-  <ImageBackground
-  source={require('../images/drink3.jpg')} style={{width: '100%', height: '100%'}}
-  >
-    <Header
-      fontFamily="SavoyeLetPlain"
-      backgroundColor="white"
-      centerComponent={{ text: 'Mr. Mixologist', style: { color: 'teal', fontSize: 17} }}
-    />
+  <Header
+    fontFamily="SavoyeLetPlain"
+    backgroundColor="white"
+    centerComponent={{ text: 'Mr. Mixologist', style: { color: 'teal', fontSize: 17} }}
+  />
+    <ImageBackground
+      source={require('../images/drink3.jpg')} style={{width: '100%', height: '100%', flex: 1, flexDirection: 'column', justifyContent: 'space-around'}}
+    >
       <Text style={styles.text}>Mr. Mixologist here to serve!</Text>
       <TouchableOpacity
       style={styles.button}
@@ -33,11 +33,12 @@ const styles = StyleSheet.create({
   },
   text: {
     color: 'white',
-    fontSize: 45,
-    padding: 20,
+    fontSize: 60,
+    paddingLeft: 20,
+    paddingRight: 20,
+    marginBottom: 65,
     textAlign: 'center',
     fontFamily: 'SavoyeLetPlain',
-    marginTop: 75
   },
   buttonText: {
     color: 'white',
@@ -49,12 +50,11 @@ const styles = StyleSheet.create({
     backgroundColor: 'teal',
     alignItems: 'center',
     justifyContent: 'center',
-    margin: 20,
     height: 50,
     width: 200,
     borderRadius: 20,
+    marginTop: 120,
     alignSelf: 'center',
-    top: 400
   },
 });
 

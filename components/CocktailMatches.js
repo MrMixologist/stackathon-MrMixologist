@@ -33,13 +33,13 @@ const CocktailMatches = ({ cocktailMatches, navigation }) => {
             (
               <View key={cocktail.id} style={styles.container}>
                 <Text style={styles.name} onPress={() => navigation.navigate('SingleCocktail', {singleCocktail: cocktail})}>{cocktail.name}</Text>
-                <Image source={{uri: cocktail.imageUrl}} style={{width: 200, height: 150}} />
+                <Image source={{uri: cocktail.imageUrl}} style={{width: 200, height: 225}} />
               </View>
             )
             ) :
             <View style={styles.noMatchContainer} >
               <Text style={styles.noMatchText} > Oops! Your ingredients don't match any cocktails. Time to create a new drink - good luck! I'll be here waiting if it goes awry...</Text>
-              <Image style={styles.noMatchImg} source={{uri: 'https://www.justdezineit.com/images/spillwhisk_l.jpg'}} />
+              <Image style={styles.noMatchImg} source={require('../images/spilledDrink.jpg')} />
             </View>
           }
       </ScrollView>
