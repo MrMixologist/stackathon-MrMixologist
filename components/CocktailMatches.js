@@ -10,19 +10,7 @@ import HeaderComponent from './Header';
 const CocktailMatches = ({ cocktailMatches, navigation }) => {
   return (
     <View>
-      <Header
-      backgroundColor="white"
-      fontFamily="SavoyeLetPlain"
-      leftComponent={
-      <TouchableOpacity onPress={() => navigation.goBack()}>
-        <Icon name="arrow-back" color="teal" />
-      </TouchableOpacity>}
-      centerComponent={{ text: 'Mr. Mixologist', style: { color: 'teal', fontSize: 17 } }}
-      rightComponent={
-        <TouchableOpacity onPress={() => navigation.navigate('Main')}>
-          <Icon name="home" color="teal" />
-        </TouchableOpacity>}
-      />
+      <HeaderComponent headerNavigation={navigation} />
       <View style={styles.bottomMargin}>
       <ScrollView stickyHeaderIndices={[0]}>
         <View style={styles.textContainer}>
