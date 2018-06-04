@@ -12,23 +12,31 @@ import {
 import { Provider } from 'react-redux';
 import store from './store';
 
-const RootNavigator = StackNavigator({
-  Main: {
-    screen: Home
+const RootNavigator = StackNavigator(
+  {
+    Main: {
+      screen: Home
+    },
+    Login: {
+      screen: Login,
+      navigationOptions: {}
+    },
+    IngredientList: {
+      screen: IngredientList
+    },
+    CocktailMatches: {
+      screen: CocktailMatches
+    },
+    SingleCocktail: {
+      screen: SingleCocktail
+    }
   },
-  Login: {
-    screen: Login
-  },
-  IngredientList: {
-    screen: IngredientList
-  },
-  CocktailMatches: {
-    screen: CocktailMatches
-  },
-  SingleCocktail: {
-    screen: SingleCocktail
+  {
+    navigationOptions: {
+      header: 'none'
+    }
   }
-});
+);
 
 const styles = StyleSheet.create({
   container: {

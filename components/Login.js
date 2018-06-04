@@ -5,9 +5,13 @@ import {
   TextInput,
   KeyboardAvoidingView,
   ScrollView,
-  Button
+  Button,
+  View,
+  ImageBackground
 } from 'react-native';
+import { Card } from 'react-native-elements';
 import { connect } from 'react-redux';
+import { Header } from './index';
 
 import { login } from '../store';
 
@@ -54,52 +58,71 @@ class Login extends React.Component {
   }
 
   render() {
+    const { navigation } = this.props;
     return (
-      <KeyboardAvoidingView behavior="position" style={styles.container}>
-        <ScrollView>
-          <Text style={styles.error}>{this.state.error}</Text>
-          <Text style={styles.textLabel}>Email</Text>
-          <TextInput
-            style={styles.textInput}
-            autoCapitalize="none"
-            autoCorrect={false}
-            maxLength={15}
-            placeholder="EMAIL"
-            placeholderTextColor="tomato"
-            value={this.state.email}
-            onChangeText={email => this.handleChangeEmail(email)}
-          />
-          <Text style={styles.textLabel}>Password</Text>
-          <TextInput
-            style={styles.textInput}
-            secureTextEntry={true}
-            autoCapitalize="none"
-            autoCorrect={false}
-            maxLength={15}
-            placeholder="PASSWORD"
-            placeholderTextColor="tomato"
-            value={this.state.password}
-            onChangeText={password => this.handleChangePassword(password)}
-          />
-          <Button
-            buttonStyle={styles.button}
-            title="Login"
-            onPress={this.handleSubmit}
-          />
-          <Button
-            buttonStyle={styles.button}
-            title="Sign Up"
-            onPress={() => {
-              this.props.navigation.navigate('Signup');
-              this.setState({
-                email: '',
-                password: '',
-                error: ''
-              });
-            }}
-          />
-        </ScrollView>
-      </KeyboardAvoidingView>
+      <View style={styles.container}>
+        <Header headerNavigation={navigation} />
+        <ImageBackground
+          defaultSource={require('../images/drink3.jpg')}
+          style={{
+            width: '100%',
+            height: '100%',
+            flex: 1,
+            // flexDirection: 'column',
+            // justifyContent: 'space-between',
+            alignItems: 'center'
+          }}
+        >
+          <KeyboardAvoidingView behavior="position">
+            <ScrollView>
+              <Text style={styles.text}>Log In</Text>
+              <Card containerStyle={{ backgroundColor: 'rgba(0,128,128,0.4)' }}>
+                <Text style={styles.error}>{this.state.error}</Text>
+                <TextInput
+                  style={styles.textInput}
+                  autoCapitalize="none"
+                  autoCorrect={false}
+                  maxLength={15}
+                  placeholder="Enter email address"
+                  placeholderTextColor="teal"
+                  value={this.state.email}
+                  onChangeText={email => this.handleChangeEmail(email)}
+                />
+                <TextInput
+                  style={styles.textInput}
+                  secureTextEntry={true}
+                  autoCapitalize="none"
+                  autoCorrect={false}
+                  maxLength={15}
+                  placeholder="Enter password"
+                  placeholderTextColor="teal"
+                  value={this.state.password}
+                  onChangeText={password => this.handleChangePassword(password)}
+                />
+                <Button
+                  buttonStyle={styles.button}
+                  title="Login"
+                  color="white"
+                  onPress={this.handleSubmit}
+                />
+                <Button
+                  buttonStyle={styles.button}
+                  title="Sign up with email"
+                  color="white"
+                  onPress={() => {
+                    this.props.navigation.navigate('Signup');
+                    this.setState({
+                      email: '',
+                      password: '',
+                      error: ''
+                    });
+                  }}
+                />
+              </Card>
+            </ScrollView>
+          </KeyboardAvoidingView>
+        </ImageBackground>
+      </View>
     );
   }
 }
@@ -112,28 +135,33 @@ export default connect(null, mapDispatchToProps)(Login);
 
 const styles = StyleSheet.create({
   container: {
-    flexDirection: 'column',
     justifyContent: 'center',
-    backgroundColor: 'white',
-    paddingHorizontal: 5,
     flex: 1
-  },
-  textLabel: {
-    fontSize: 20,
-    marginTop: 10,
-    padding: 10
   },
   textInput: {
     height: 40,
     width: 300,
     margin: 10,
-    color: 'tomato',
+    backgroundColor: 'white',
+    color: 'teal',
     fontSize: 15,
     borderWidth: 2,
-    borderRadius: 5
+    borderRadius: 5,
+    paddingHorizontal: 5
+  },
+  text: {
+    color: 'white',
+    fontSize: 50,
+    textShadowColor: 'white',
+    paddingLeft: 20,
+    paddingRight: 20,
+    marginTop: 75,
+    textAlign: 'center',
+    fontFamily: 'SavoyeLetPlain'
   },
   button: {
     backgroundColor: 'gray',
+    color: 'white',
     width: 150,
     height: 40,
     borderRadius: 5,
