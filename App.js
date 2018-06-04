@@ -2,41 +2,33 @@ import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { Header } from 'react-native-elements';
 import { StackNavigator } from 'react-navigation';
-import Home from './components/Home';
-import IngredientList from './components/IngredientList';
-import CocktailMatches from './components/CocktailMatches';
-import SingleCocktail from './components/SingleCocktail';
+import {
+  IngredientList,
+  CocktailMatches,
+  SingleCocktail,
+  Login,
+  Home
+} from './components/index';
 import { Provider } from 'react-redux';
 import store from './store';
 
-
-const RootNavigator = StackNavigator(
-  {
+const RootNavigator = StackNavigator({
   Main: {
-    screen: Home,
-    navigationOptions: {
-      header: 'Home',
-    },
+    screen: Home
+  },
+  Login: {
+    screen: Login
   },
   IngredientList: {
-    screen: IngredientList,
-    navigationOptions: {
-      header: 'Ingredients'
-    }
+    screen: IngredientList
   },
   CocktailMatches: {
-    screen: CocktailMatches,
-    navigationOptions: {
-      header: 'Cocktail Matches'
-    }
+    screen: CocktailMatches
   },
   SingleCocktail: {
-    screen: SingleCocktail,
-    navigationOptions: {
-      header: 'singleCocktail'
-    }
+    screen: SingleCocktail
   }
-})
+});
 
 const styles = StyleSheet.create({
   container: {
@@ -44,14 +36,14 @@ const styles = StyleSheet.create({
     margin: 25,
     backgroundColor: 'white',
     alignItems: 'center',
-    justifyContent: 'center',
-  },
+    justifyContent: 'center'
+  }
 });
 
 const app = () => (
   <Provider store={store}>
     <RootNavigator />
   </Provider>
-)
+);
 
 export default app;
