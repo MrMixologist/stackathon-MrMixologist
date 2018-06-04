@@ -1,4 +1,5 @@
 import axios from 'axios';
+import domain from '../domain';
 
 /**
  * ACTION TYPES
@@ -17,41 +18,41 @@ const getCocktails = cocktails => ({
 const getCocktail = cocktail => ({
   type: GET_COCKTAIL,
   cocktail
-})
+});
 
 /**
  * THUNK CREATORS
  */
 
-export const fetchCocktails = () =>
-  dispatch =>
-    axios.get(`http://172.16.21.59:8080/api/cocktails`)
-      .then(res => res.data)
-      .then(cocktails => {
-          const action = getCocktails(cocktails);
-          dispatch(action);
-      })
-      .catch(err => console.log(err));
+export const fetchCocktails = () => dispatch =>
+  axios
+    .get(`${domain}/api/cocktails`)
+    .then(res => res.data)
+    .then(cocktails => {
+      const action = getCocktails(cocktails);
+      dispatch(action);
+    })
+    .catch(err => console.log(err));
 
-export const fetchCocktailById = id =>
-  dispatch =>
-    axios.get(`http://localhost:8080/api/cocktails/${id}`)
-      .then(res => res.data)
-      .then(cocktail => {
-          const action = getCocktail(cocktail);
-          dispatch(action);
-      })
-      .catch(err => console.log(err));
+export const fetchCocktailById = id => dispatch =>
+  axios
+    .get(`${domain}/api/cocktails/${id}`)
+    .then(res => res.data)
+    .then(cocktail => {
+      const action = getCocktail(cocktail);
+      dispatch(action);
+    })
+    .catch(err => console.log(err));
 /**
  * REDUCER
  */
-export default function (state = [], action) {
+export default function(state = [], action) {
   switch (action.type) {
     case GET_COCKTAILS:
-      return action.cocktails
+      return action.cocktails;
     case GET_COCKTAIL:
-      return state.cocktails.find(cocktail => cocktail.id === action.id)
+      return state.cocktails.find(cocktail => cocktail.id === action.id);
     default:
-      return state
+      return state;
   }
 }
