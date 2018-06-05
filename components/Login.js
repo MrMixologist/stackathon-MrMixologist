@@ -62,21 +62,10 @@ class Login extends React.Component {
     return (
       <View style={styles.container}>
         <Header headerNavigation={navigation} />
-        {/* <ImageBackground
-          defaultSource={require('../images/drink3.jpg')}
-          style={{
-            width: '100%',
-            height: '100%',
-            flex: 1,
-            // flexDirection: 'column',
-            // justifyContent: 'space-between',
-            alignItems: 'center'
-          }}
-        > */}
           <KeyboardAvoidingView behavior="position">
             <ScrollView>
               <Text style={styles.text}>Log In</Text>
-              <Card containerStyle={{ backgroundColor: 'wheat', borderColor: 'black', borderWidth: 3, borderRadius: 5 }}>
+              <Card containerStyle={styles.card}>
                 <Text style={styles.error}>{this.state.error}</Text>
                 <TextInput
                   style={styles.textInput}
@@ -121,7 +110,6 @@ class Login extends React.Component {
               </Card>
             </ScrollView>
           </KeyboardAvoidingView>
-        {/* </ImageBackground> */}
       </View>
     );
   }
@@ -139,6 +127,12 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     justifyContent: 'flex-start',
     backgroundColor: 'teal',
+  },
+  card: {
+    backgroundColor: 'wheat',
+    borderColor: 'black',
+    borderWidth: 3,
+    borderRadius: 10,
   },
   textInput: {
     height: 40,
