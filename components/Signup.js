@@ -7,9 +7,11 @@ import {
   ScrollView,
   Button
 } from 'react-native';
+import { Card } from 'react-native-elements';
 import { connect } from 'react-redux';
+import Header from './Header';
 
-import { signup } from '../redux/auth';
+import { signup } from '../store';
 
 class Signup extends React.Component {
   constructor(props) {
@@ -70,44 +72,53 @@ class Signup extends React.Component {
   }
 
   render() {
+    const { navigation } = this.props;
     return (
       <KeyboardAvoidingView behavior="position" style={styles.container}>
+        <Header headerNavigation={navigation} />
         <ScrollView>
-          <Text style={styles.error}>{this.state.error}</Text>
-          <Text style={styles.textLabel}>Enter a Email</Text>
-          <TextInput
-            style={styles.textInput}
-            autoCapitalize="none"
-            autoCorrect={false}
-            maxLength={15}
-            value={this.state.email}
-            onChangeText={email => this.handleChangeEmail(email)}
-          />
-          <Text style={styles.textLabel}>Enter a Password</Text>
-          <TextInput
-            style={styles.textInput}
-            secureTextEntry={true}
-            autoCapitalize="none"
-            autoCorrect={false}
-            maxLength={15}
-            value={this.state.password1}
-            onChangeText={password1 => this.handleChangePassword1(password1)}
-          />
-          <Text style={styles.textLabel}>Confirm Password</Text>
-          <TextInput
-            style={styles.textInput}
-            secureTextEntry={true}
-            autoCapitalize="none"
-            autoCorrect={false}
-            maxLength={15}
-            value={this.state.password2}
-            onChangeText={password2 => this.handleChangePassword2(password2)}
-          />
-          <Button
-            buttonStyle={styles.button}
-            title="Sign Up"
-            onPress={this.handleSubmit}
-          />
+          <Text style={styles.text}>Sign Up</Text>
+          <Card containerStyle={styles.card}>
+            <Text style={styles.error}>{this.state.error}</Text>
+            <TextInput
+              style={styles.textInput}
+              autoCapitalize="none"
+              autoCorrect={false}
+              maxLength={30}
+              placeholder="Enter an email address"
+              placeholderTextColor="teal"
+              value={this.state.email}
+              onChangeText={email => this.handleChangeEmail(email)}
+            />
+            <TextInput
+              style={styles.textInput}
+              secureTextEntry={true}
+              autoCapitalize="none"
+              autoCorrect={false}
+              maxLength={30}
+              placeholder="Enter a password"
+              placeholderTextColor="teal"
+              value={this.state.password1}
+              onChangeText={password1 => this.handleChangePassword1(password1)}
+            />
+            <TextInput
+              style={styles.textInput}
+              secureTextEntry={true}
+              autoCapitalize="none"
+              autoCorrect={false}
+              maxLength={30}
+              placeholder="Re-enter password"
+              placeholderTextColor="teal"
+              value={this.state.password2}
+              onChangeText={password2 => this.handleChangePassword2(password2)}
+            />
+            <Button
+              buttonStyle={styles.button}
+              title="Sign Up"
+              color="black"
+              onPress={this.handleSubmit}
+            />
+          </Card>
         </ScrollView>
       </KeyboardAvoidingView>
     );
@@ -123,28 +134,41 @@ export default connect(null, mapDispatchToProps)(Signup);
 
 const styles = StyleSheet.create({
   container: {
+    flex: 1,
     flexDirection: 'column',
-    justifyContent: 'center',
-    backgroundColor: 'white',
-    paddingHorizontal: 5,
-    flex: 1
+    justifyContent: 'flex-start',
+    backgroundColor: 'teal'
   },
-  textLabel: {
-    fontSize: 20,
-    marginTop: 10,
-    padding: 10
+  card: {
+    backgroundColor: 'wheat',
+    borderColor: 'black',
+    borderWidth: 3,
+    borderRadius: 10
   },
   textInput: {
     height: 40,
     width: 300,
     margin: 10,
-    color: 'tomato',
+    backgroundColor: 'white',
+    color: 'teal',
     fontSize: 15,
     borderWidth: 2,
-    borderRadius: 5
+    borderRadius: 5,
+    paddingHorizontal: 5
+  },
+  text: {
+    color: 'wheat',
+    fontSize: 50,
+    textShadowColor: 'white',
+    paddingLeft: 20,
+    paddingRight: 20,
+    marginTop: 40,
+    textAlign: 'center',
+    fontFamily: 'SavoyeLetPlain'
   },
   button: {
     backgroundColor: 'gray',
+    color: 'white',
     width: 150,
     height: 40,
     borderRadius: 5,
@@ -152,7 +176,7 @@ const styles = StyleSheet.create({
   },
   error: {
     fontSize: 15,
-    color: 'blue',
+    color: 'red',
     marginVertical: 0,
     paddingLeft: 10,
     fontWeight: 'bold'
