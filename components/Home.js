@@ -4,48 +4,75 @@ import {
   View,
   ImageBackground,
   Text,
-  TouchableOpacity
+  TouchableOpacity,
+  Button
 } from 'react-native';
 import { Header } from 'react-native-elements';
+import { connect } from 'react-redux';
+import { logout } from '../store';
 
-const Home = ({ navigation }) => (
-  <View style={styles.container}>
-    <Header
-      fontFamily="SavoyeLetPlain"
-      backgroundColor="white"
-      centerComponent={{
-        text: 'Mr. Mixologist',
-        style: { color: 'teal', fontSize: 17 }
-      }}
-    />
-    <ImageBackground
-      source={require('../images/drink3.jpg')}
-      style={{
-        width: '100%',
-        height: '100%',
-        flex: 1,
-        flexDirection: 'column',
-        justifyContent: 'space-around'
-      }}
-    >
-      <Text style={styles.text}>Mr. Mixologist</Text>
-      <View style={styles.buttonsContainer}>
-        <TouchableOpacity
-          style={styles.button}
-          onPress={() => navigation.navigate('Login')}
+export class Home extends React.Component {
+  render() {
+    const { navigation, currentUser, logoutFunc } = this.props;
+    return (
+      <View style={styles.container}>
+        <Header
+          fontFamily="SavoyeLetPlain"
+          backgroundColor="white"
+          centerComponent={{
+            text: 'Mr. Mixologist',
+            style: { color: 'teal', fontSize: 17 }
+          }}
+        />
+        <ImageBackground
+          source={require('../images/drink3.jpg')}
+          style={{
+            width: '100%',
+            height: '100%',
+            flex: 1,
+            flexDirection: 'column',
+            justifyContent: 'space-around'
+          }}
         >
-          <Text style={styles.buttonText}>Login/Signup</Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          style={styles.button}
-          onPress={() => navigation.navigate('IngredientList')}
-        >
-          <Text style={styles.buttonText}>Select Ingredients</Text>
-        </TouchableOpacity>
+          <Text style={styles.text}>Mr. Mixologist</Text>
+          <View style={styles.buttonsContainer}>
+            <TouchableOpacity
+              style={styles.button}
+              onPress={() => navigation.navigate('IngredientList')}
+            >
+              <Text style={styles.buttonText}>Select Ingredients</Text>
+            </TouchableOpacity>
+            {currentUser.email ? (
+              <Button
+                title="Logout"
+                color="white"
+                onPress={() => logoutFunc(navigation)}
+              />
+            ) : (
+              //login button if no user signed in
+              <TouchableOpacity
+                style={styles.button}
+                onPress={() => navigation.navigate('Login')}
+              >
+                <Text style={styles.buttonText}>Login/Signup</Text>
+              </TouchableOpacity>
+            )}
+          </View>
+        </ImageBackground>
       </View>
-    </ImageBackground>
-  </View>
-);
+    );
+  }
+}
+
+const mapStateToProps = state => ({
+  currentUser: state.currentUser
+});
+
+const mapDispatchToProps = dispatch => ({
+  logoutFunc: navigation => dispatch(logout(navigation))
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Home);
 
 const styles = StyleSheet.create({
   container: {
@@ -85,5 +112,3 @@ const styles = StyleSheet.create({
     alignSelf: 'center'
   }
 });
-
-export default Home;

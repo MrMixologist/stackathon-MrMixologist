@@ -14,7 +14,7 @@ import store from './store';
 
 const RootNavigator = StackNavigator(
   {
-    Main: {
+    Home: {
       screen: Home
     },
     Login: {

@@ -26,7 +26,7 @@ const HeaderComponent = ({ headerNavigation }) => {
         style: { color: 'teal', fontSize: 17 }
       }}
       rightComponent={
-        <TouchableOpacity onPress={() => headerNavigation.navigate('Main')}>
+        <TouchableOpacity onPress={() => headerNavigation.navigate('Home')}>
           <Icon name="local-bar" color="teal" />
         </TouchableOpacity>
       }
