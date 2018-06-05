@@ -7,13 +7,13 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 import ingredients from './ingredients';
 import cocktails from './cocktails';
 import cocktailMatches from './cocktailMatches';
-import auth from './auth';
+import currentUser from './auth';
 
 const reducer = combineReducers({
   ingredients,
   cocktails,
   cocktailMatches,
-  auth
+  currentUser
 });
 const middleware = composeWithDevTools(
   applyMiddleware(

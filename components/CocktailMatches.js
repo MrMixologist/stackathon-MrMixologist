@@ -1,5 +1,12 @@
 import React from 'react';
-import { StyleSheet, ScrollView, Text, View, TouchableOpacity, Image } from 'react-native';
+import {
+  StyleSheet,
+  ScrollView,
+  Text,
+  View,
+  TouchableOpacity,
+  Image
+} from 'react-native';
 import { StackNavigator } from 'react-navigation';
 import { connect } from 'react-redux';
 import { Icon, Header } from 'react-native-elements';
@@ -12,35 +19,51 @@ const CocktailMatches = ({ cocktailMatches, navigation }) => {
     <View>
       <HeaderComponent headerNavigation={navigation} />
       <View style={styles.bottomMargin}>
-      <ScrollView stickyHeaderIndices={[0]}>
-        <View style={styles.textContainer}>
-          <Text style={styles.text}> Cocktail List </Text>
-        </View>
-          {Array.isArray(cocktailMatches) && cocktailMatches.length ?
-            cocktailMatches.map(cocktail =>
-            (
+        <ScrollView stickyHeaderIndices={[0]}>
+          <View style={styles.textContainer}>
+            <Text style={styles.text}> Cocktail List </Text>
+          </View>
+          {Array.isArray(cocktailMatches) && cocktailMatches.length ? (
+            cocktailMatches.map(cocktail => (
               <View key={cocktail.id} style={styles.container}>
-                <Text style={styles.name} onPress={() => navigation.navigate('SingleCocktail', {singleCocktail: cocktail})}>{cocktail.name}</Text>
-                <Image source={{uri: cocktail.imageUrl}} style={{width: 200, height: 225}} />
+                <Text
+                  style={styles.name}
+                  onPress={() =>
+                    navigation.navigate('SingleCocktail', {
+                      singleCocktail: cocktail
+                    })
+                  }
+                >
+                  {cocktail.name}
+                </Text>
+                <Image
+                  source={{ uri: cocktail.imageUrl }}
+                  style={{ width: 200, height: 225 }}
+                />
               </View>
-            )
-            ) :
-            <View style={styles.noMatchContainer} >
-              <Text style={styles.noMatchText} > Oops! Your ingredients don't match any cocktails. Time to create a new drink - good luck! I'll be here waiting if it goes awry...</Text>
-              <Image style={styles.noMatchImg} source={require('../images/spilledDrink.jpg')} />
+            ))
+          ) : (
+            <View style={styles.noMatchContainer}>
+              <Text style={styles.noMatchText}>
+                {' '}
+                Oops! Your ingredients don't match any cocktails. Time to create
+                a new drink - good luck! I'll be here waiting if it goes awry...
+              </Text>
+              <Image
+                style={styles.noMatchImg}
+                source={require('../images/spilledDrink.jpg')}
+              />
             </View>
-          }
-      </ScrollView>
+          )}
+        </ScrollView>
       </View>
     </View>
-  )
-}
+  );
+};
 
-const mapState = (state) => {
-  return {
-    cocktailMatches: state.cocktailMatches
-  }
-}
+const mapState = state => ({
+  cocktailMatches: state.cocktailMatches
+});
 
 const styles = StyleSheet.create({
   container: {
@@ -93,6 +116,6 @@ const styles = StyleSheet.create({
   bottomMargin: {
     marginBottom: 140
   }
-})
+});
 
-export default connect(mapState)(CocktailMatches)
+export default connect(mapState)(CocktailMatches);

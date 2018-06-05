@@ -7,19 +7,22 @@ import {
   CocktailMatches,
   SingleCocktail,
   Login,
-  Home
+  Home,
+  Signup
 } from './components/index';
 import { Provider } from 'react-redux';
 import store from './store';
 
 const RootNavigator = StackNavigator(
   {
-    Main: {
+    Home: {
       screen: Home
     },
     Login: {
-      screen: Login,
-      navigationOptions: {}
+      screen: Login
+    },
+    Signup: {
+      screen: Signup
     },
     IngredientList: {
       screen: IngredientList

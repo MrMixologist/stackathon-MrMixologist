@@ -5,9 +5,7 @@ import {
   TextInput,
   KeyboardAvoidingView,
   ScrollView,
-  Button,
-  View,
-  ImageBackground
+  Button
 } from 'react-native';
 import { Card } from 'react-native-elements';
 import { connect } from 'react-redux';
@@ -60,57 +58,55 @@ class Login extends React.Component {
   render() {
     const { navigation } = this.props;
     return (
-      <View style={styles.container}>
+      <KeyboardAvoidingView behavior="position" style={styles.container}>
         <Header headerNavigation={navigation} />
-          <KeyboardAvoidingView behavior="position">
-            <ScrollView>
-              <Text style={styles.text}>Log In</Text>
-              <Card containerStyle={styles.card}>
-                <Text style={styles.error}>{this.state.error}</Text>
-                <TextInput
-                  style={styles.textInput}
-                  autoCapitalize="none"
-                  autoCorrect={false}
-                  maxLength={15}
-                  placeholder="Enter email address"
-                  placeholderTextColor="teal"
-                  value={this.state.email}
-                  onChangeText={email => this.handleChangeEmail(email)}
-                />
-                <TextInput
-                  style={styles.textInput}
-                  secureTextEntry={true}
-                  autoCapitalize="none"
-                  autoCorrect={false}
-                  maxLength={15}
-                  placeholder="Enter password"
-                  placeholderTextColor="teal"
-                  value={this.state.password}
-                  onChangeText={password => this.handleChangePassword(password)}
-                />
-                <Button
-                  buttonStyle={styles.button}
-                  title="Login"
-                  color="black"
-                  onPress={this.handleSubmit}
-                />
-                <Button
-                  buttonStyle={styles.button}
-                  title="Sign up with email"
-                  color="black"
-                  onPress={() => {
-                    this.props.navigation.navigate('Signup');
-                    this.setState({
-                      email: '',
-                      password: '',
-                      error: ''
-                    });
-                  }}
-                />
-              </Card>
-            </ScrollView>
-          </KeyboardAvoidingView>
-      </View>
+        <ScrollView>
+          <Text style={styles.text}>Log In</Text>
+          <Card containerStyle={styles.card}>
+            <Text style={styles.error}>{this.state.error}</Text>
+            <TextInput
+              style={styles.textInput}
+              autoCapitalize="none"
+              autoCorrect={false}
+              maxLength={30}
+              placeholder="Enter email address"
+              placeholderTextColor="teal"
+              value={this.state.email}
+              onChangeText={email => this.handleChangeEmail(email)}
+            />
+            <TextInput
+              style={styles.textInput}
+              secureTextEntry={true}
+              autoCapitalize="none"
+              autoCorrect={false}
+              maxLength={30}
+              placeholder="Enter password"
+              placeholderTextColor="teal"
+              value={this.state.password}
+              onChangeText={password => this.handleChangePassword(password)}
+            />
+            <Button
+              buttonStyle={styles.button}
+              title="Login"
+              color="black"
+              onPress={this.handleSubmit}
+            />
+            <Button
+              buttonStyle={styles.button}
+              title="Signup with email"
+              color="black"
+              onPress={() => {
+                this.props.navigation.navigate('Signup');
+                this.setState({
+                  email: '',
+                  password: '',
+                  error: ''
+                });
+              }}
+            />
+          </Card>
+        </ScrollView>
+      </KeyboardAvoidingView>
     );
   }
 }
@@ -126,13 +122,13 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: 'column',
     justifyContent: 'flex-start',
-    backgroundColor: 'teal',
+    backgroundColor: 'teal'
   },
   card: {
     backgroundColor: 'wheat',
     borderColor: 'black',
     borderWidth: 3,
-    borderRadius: 10,
+    borderRadius: 10
   },
   textInput: {
     height: 40,
@@ -151,7 +147,7 @@ const styles = StyleSheet.create({
     textShadowColor: 'white',
     paddingLeft: 20,
     paddingRight: 20,
-    marginTop: 75,
+    marginTop: 40,
     textAlign: 'center',
     fontFamily: 'SavoyeLetPlain'
   },
@@ -165,7 +161,7 @@ const styles = StyleSheet.create({
   },
   error: {
     fontSize: 15,
-    color: 'blue',
+    color: 'red',
     marginVertical: 0,
     paddingLeft: 10,
     fontWeight: 'bold'
