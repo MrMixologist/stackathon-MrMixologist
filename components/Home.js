@@ -1,10 +1,9 @@
 import React from 'react';
 import {
   StyleSheet,
-  Text,
   View,
   ImageBackground,
-  Button,
+  Text,
   TouchableOpacity
 } from 'react-native';
 import { Header } from 'react-native-elements';
@@ -29,13 +28,13 @@ const Home = ({ navigation }) => (
         justifyContent: 'space-around'
       }}
     >
-      <Text style={styles.text}>Mr. Mixologist here to serve!</Text>
+      <Text style={styles.text}>Mr. Mixologist</Text>
       <View style={styles.buttonsContainer}>
         <TouchableOpacity
           style={styles.button}
           onPress={() => navigation.navigate('Login')}
         >
-          <Text style={styles.buttonText}>Login</Text>
+          <Text style={styles.buttonText}>Login/Signup</Text>
         </TouchableOpacity>
         <TouchableOpacity
           style={styles.button}
@@ -52,15 +51,15 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: 'white',
-    alignItems: 'center',
-    justifyContent: 'center'
+    alignItems: 'center'
   },
   text: {
     color: 'white',
-    fontSize: 60,
+    fontSize: 70,
+    textShadowColor: 'white',
     paddingLeft: 20,
     paddingRight: 20,
-    marginBottom: 65,
+    marginTop: 100,
     textAlign: 'center',
     fontFamily: 'SavoyeLetPlain'
   },
@@ -72,16 +71,16 @@ const styles = StyleSheet.create({
   },
   buttonsContainer: {
     flex: 1,
-    alignItems: 'center'
+    justifyContent: 'flex-end',
+    paddingBottom: 75
   },
   button: {
-    backgroundColor: 'teal',
+    backgroundColor: 'rgba(0,128,128,0.8)',
     alignItems: 'center',
     justifyContent: 'center',
     height: 50,
     width: 200,
     borderRadius: 20,
-    marginTop: 120,
     marginBottom: 20,
     alignSelf: 'center'
   }
